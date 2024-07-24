@@ -13,8 +13,10 @@ import {
 import { Input } from "./ui/input";
 import { Control } from "react-hook-form";
 import { FormFieldType } from "./forms/PatientForm";
-import PhoneInput, { E164Number } from "react-phone-number-input";
+import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+
+type E164Number = string;
 
 interface CustomProps {
   control: Control<any>;
@@ -97,3 +99,4 @@ const CustomFormField = (props: CustomProps) => {
 };
 
 export default CustomFormField;
+
