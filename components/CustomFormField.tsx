@@ -15,6 +15,7 @@ import { Control } from "react-hook-form";
 import { FormFieldType } from "./forms/PatientForm";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import E164Number from "react-phone-number-input"
 
 // type E164Number = string;
 
@@ -66,7 +67,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
             placeholder={placeholder}
             international
             withCountryCallingCode
-            value={field.value}
+            value={field.value as typeof E164Number | undefined}
             onChange={(value) => field.onChange(value)}
             className="shad-input"
             {...field}
