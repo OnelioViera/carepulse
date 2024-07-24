@@ -9,12 +9,12 @@ import CustomFormField from "@/components/CustomFormField";
 
 export enum FormFieldType {
   INPUT = "input",
-  TEXTAREA = 'textarea',
-  PHONE_INPUT = 'phoneInput',
-  CHECKBOX = 'checkbox',
-  DATE_PICKER = 'datePicker',
-  SELECT = 'select',
-  SKELETON = 'skeleton',
+  TEXTAREA = "textarea",
+  PHONE_INPUT = "phoneInput",
+  CHECKBOX = "checkbox",
+  DATE_PICKER = "datePicker",
+  SELECT = "select",
+  SKELETON = "skeleton",
 }
 
 const formSchema = z.object({
@@ -41,15 +41,35 @@ const PatientForm = () => {
           <h1 className="header">Hi there 👋</h1>
           <p className="text-dark-700">Schedule your first appointement.</p>
         </section>
+
         <CustomFormField
           fieldType={FormFieldType.INPUT}
           control={form.control}
-          name='name'
-          label='Full name'
-          placeholder='John Doe'
-          iconSrc='/assets/icons/user.svg'
-          iconAlt='user'
+          name="name"
+          label="Full Name"
+          placeholder="John Doe"
+          iconSrc="/assets/icons/user.svg"
+          iconAlt="user"
         />
+
+        <CustomFormField
+          fieldType={FormFieldType.INPUT}
+          control={form.control}
+          name="email"
+          label="Email"
+          placeholder="johndoe@jsmastery.pro"
+          iconSrc="/assets/icons/email.svg"
+          iconAlt="email"
+        />
+
+        <CustomFormField
+          fieldType={FormFieldType.PHONE_INPUT}
+          control={form.control}
+          name="phone"
+          label="Phone Number"
+          placeholder="(555) 123-4567"
+        />
+
         <Button type="submit">Submit</Button>
       </form>
     </Form>
