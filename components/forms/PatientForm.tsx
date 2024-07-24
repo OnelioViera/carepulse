@@ -7,6 +7,9 @@ import { Form } from "@/components/ui/form";
 import CustomFormField from "@/components/CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { useState } from "react";
+import { UserFormValidation } from "@/lib/validation";
+import { create } from "domain";
+import { useRouter } from "next/navigation";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -18,25 +21,39 @@ export enum FormFieldType {
   SKELETON = "skeleton",
 }
 
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-});
-
-const PatientForm = () => {
+export const PatientForm = () => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof UserFormValidation>>({
+    resolver: zodResolver(UserFormValidation),
     defaultValues: {
-      username: "",
+      name: "",
+      email: "",
+      phone: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit({
+    name,
+    email,
+    phone,
+  }: z.infer<typeof UserFormValidation>) {
+    setIsLoading(true);
+
+    try {
+      // const userData = { name, email, phone };
+
+      // const user = await createUser(userData);
+
+      // if (user !== undefined) router.push(`/patients/${user.$id}/register`);
+      //   console.log("User created successfully");
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
@@ -80,3 +97,6 @@ const PatientForm = () => {
 };
 
 export default PatientForm;
+function createUser(userData: { name: string; email: string; phone: string }) {
+  throw new Error("Function not implemented.");
+}
