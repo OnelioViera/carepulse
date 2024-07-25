@@ -8,7 +8,7 @@ import CustomFormField from "@/components/CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { UserFormValidation } from "@/lib/validation";
-import { create } from "domain";
+import { createUser } from "@/lib/actions/patient.actions";
 import { useRouter } from "next/navigation";
 
 export enum FormFieldType {
@@ -42,12 +42,11 @@ export const PatientForm = () => {
     setIsLoading(true);
 
     try {
-      // const userData = { name, email, phone };
+      const userData = { name, email, phone };
 
-      // const user = await createUser(userData);
+      const user = await createUser(userData);
 
-      // if (user !== undefined) router.push(`/patients/${user.$id}/register`);
-      //   console.log("User created successfully");
+      if (user !== undefined) router.push(`/patients/${user.$id}/register`);
       
     } catch (error) {
       console.log(error);
@@ -59,7 +58,7 @@ export const PatientForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
         <section className="mb-12 space-y-4">
           <h1 className="header">Hi there 👋</h1>
-          <p className="text-dark-700">Schedule your first appointement.</p>
+          <p className="text-dark-700">Schedule your first appointment.</p>
         </section>
 
         <CustomFormField
@@ -97,6 +96,4 @@ export const PatientForm = () => {
 };
 
 export default PatientForm;
-function createUser(userData: { name: string; email: string; phone: string }) {
-  throw new Error("Function not implemented.");
-}
+
